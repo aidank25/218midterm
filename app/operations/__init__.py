@@ -31,7 +31,4 @@ class Multiplication(Operation):
     
 class Division(Operation):
     def execute(self, a, b):
-        try:
-            return a / b
-        except ZeroDivisionError:
-            raise ZeroDivisionError("Division by zero is not allowed")
+        return a / b
