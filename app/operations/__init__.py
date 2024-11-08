@@ -4,7 +4,6 @@
 
 from abc import ABC, abstractmethod
 from decimal import Decimal
-from typing import Dict
 
 class Operation(ABC):
     """abstract base class for operations"""
