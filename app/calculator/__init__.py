@@ -84,7 +84,7 @@ def calculator_repl():
             if command == "exit":
                 logging.info("Exiting program.")
                 calculator.history.save_history()
-                exit
+                exit(0)
             try:
                 command_map[command]()
                 continue
