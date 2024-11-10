@@ -32,10 +32,10 @@ def test_to_list():
     assert hist.to_list()[0][2] == hist.calculations[0].b
     assert hist.to_list()[0][3] == hist.calculations[0].result
 
-def test_to_csv():
+def test_serialize():
     hist = History()
     for x in range(0,hist.max_entries+1):
         hist.add_calculation(Calculation(2,x,"add"))
-    hist.to_csv()
-    assert os.path.isfile(hist.file_path)
+    hist.serialize()
+    assert os.path.isfile(f"{hist.directory}/{hist.file_name}")
     

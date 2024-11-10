@@ -7,13 +7,14 @@ import os
 from dotenv import load_dotenv
 
 class History():
-    file_path: str
+    directory: str
+    file_name = "history.csv"
     max_entries: int
     calculations = []
 
     def __init__(self):
         envs = EnvVars()
-        self.file_path = envs.get_environment_variable("HIST_PATH")
+        self.directory = envs.get_environment_variable("HIST_PATH")
         self.max_entries = int(envs.get_environment_variable("HIST_MAX"))
         pass
     
@@ -25,24 +26,20 @@ class History():
             self.calculations.pop()
     
     def to_list(self):
+        """converts list of calculation objects to list of lists"""
         listList = []
         for c in self.calculations:
             listList.append([c.operation, c.a, c.b, c.result])
         return listList
-
-    def to_csv(self):
-        """convert list of calculation objects to csv"""
-        data_frame = pd.DataFrame(self.to_list(), columns=["operation","a","b","result"])
-        return data_frame.to_csv(self.file_path,index=False)
-    
     
     def serialize(self):
+        """convert list of calculation objects to csv and stores it to a file_path/file_ame.csv"""
         # TODO: use absolute path
-        try:
-            # create the directory if it doesnt exist
-            os.makedirs(self.file_path, exist_ok=True)
-            logging.info(f"created directory: {self.file_path}")
-        except Exception as e:
-            logging.error(f"directory: {file_path}, error: {e}")
-    
-# except Exception as e
+        file_path = os.path.join(self.directory, self.file_name)
+        # create the directory if it doesnt exist
+        os.makedirs(self.directory, exist_ok=True)
+        # store to csv file
+        data_frame = pd.DataFrame(self.to_list(), columns=["operation","a","b","result"])
+        data_frame.to_csv(file_path,index=False)
+        logging.info(f"stored calculation history at {file_path}")
+        
