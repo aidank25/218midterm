@@ -6,6 +6,7 @@ from pandas import DataFrame
 import os
 from dotenv import load_dotenv
 
+
 class History():
     directory: str
     file_name = "history.csv"
@@ -32,14 +33,25 @@ class History():
             listList.append([c.operation, c.a, c.b, c.result])
         return listList
     
-    def serialize(self):
+    def save_history(self):
         """convert list of calculation objects to csv and stores it to a file_path/file_ame.csv"""
-        # TODO: use absolute path
         file_path = os.path.join(self.directory, self.file_name)
+        file_path = os.path.abspath(file_path)
         # create the directory if it doesnt exist
         os.makedirs(self.directory, exist_ok=True)
         # store to csv file
         data_frame = pd.DataFrame(self.to_list(), columns=["operation","a","b","result"])
         data_frame.to_csv(file_path,index=False)
         logging.info(f"stored calculation history at {file_path}")
+
+    def load_history(self):
+        """read from csv file and store data as calculation objects in calculaitons"""
+        file_path = os.path.join(self.directory, self.file_name)
+        file_path = os.path.abspath(file_path)
+        # TODO: error if file doesnt exist
+        data_frame = pd.read_csv(file_path)
+        for index, row in data_frame.iterrows():
+            logging.info(f"adding {row['operation']}, {row['a']}, {row['b']}")
+            self.add_calculation(Calculation(row["a"], row["b"], row["operation"]))
+
         

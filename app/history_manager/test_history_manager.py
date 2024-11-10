@@ -2,7 +2,7 @@ import pytest
 from app.history_manager import History
 from app.calculation import Calculation
 import os
-
+from app.logger import setup_logger
 
 
 def test_add_calculation():
@@ -13,7 +13,7 @@ def test_add_calculation():
     assert hist.calculations.pop() == calc
 
 def test_max_entries():
-    """add calculation to empty history"""
+    """overwrite oldest calculation"""
     hist = History()
     calc = Calculation(2,5,"add")
     for x in range(0,hist.max_entries+1):
@@ -22,7 +22,7 @@ def test_max_entries():
     assert len(hist.calculations) == hist.max_entries
 
 def test_to_list():
-    """convert to list"""
+    """convert to calculation objects to lists"""
     #build list of calculations
     hist = History()
     for x in range(0,hist.max_entries+1):
@@ -32,10 +32,26 @@ def test_to_list():
     assert hist.to_list()[0][2] == hist.calculations[0].b
     assert hist.to_list()[0][3] == hist.calculations[0].result
 
-def test_serialize():
+def test_save_history():
+    """does hist"""
     hist = History()
     for x in range(0,hist.max_entries+1):
         hist.add_calculation(Calculation(2,x,"add"))
-    hist.serialize()
+    hist.save_history()
     assert os.path.isfile(f"{hist.directory}/{hist.file_name}")
+
+def test_load_history():
+    setup_logger()
+    num_calculations = 3
+    hist1 = History()
+    for x in range(num_calculations):
+        hist1.add_calculation(Calculation(2,x,"add"))
+    hist1.save_history()
+    
+    hist2 = History()
+    hist2.load_history()
+    for x in range(num_calculations):
+        assert hist1.calculations[x] == hist2.calculations[x]
+
+
     
