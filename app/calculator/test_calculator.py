@@ -19,4 +19,9 @@ def test_help(monkeypatch,capsys):
     help_str = "help\nhistory\nclear\nundo\nredo\nsave\nload\nadd\nsubtract\nmultiply\ndivide"
     assert help_str in captured.out
 
+def test_exit(monkeypatch,capsys):
+    monkeypatch.setattr(sys, "stdin", StringIO("exit\n"))
+    with pytest.raises(SystemExit) as e:
+        calculator_repl()
+    assert e.value.code == 0
     
