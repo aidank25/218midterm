@@ -12,8 +12,8 @@ class Calculator:
         "help",
         "history",
         "clear",
-        "undo",
-        "redo",
+        #"undo",
+        #"redo",
         "save",
         "load",
         "add",
@@ -74,6 +74,13 @@ def calculator_repl():
             split_input = []
             split_input = input().lower().strip().split()
             command = split_input[0]
+            try:
+                a = split_input[1]
+                b = split_input[2]
+            except IndexError:
+                a = None
+                b = None
+                
             logging.info(f"user typed in command {command}")
             
             # non calculation commands
@@ -88,15 +95,6 @@ def calculator_repl():
                 pass
             # calculation commands
             try:
-                a = split_input[1]
-                b = split_input[2]
-            except IndexError:
-                print("Operation Failed: missing operand(s)")
-                logging.info("Operation Failed: missing operand(s)")
-                continue
-            try:
-                
-
                 print(f"result: {calculator.perform_operation(command, a, b)}")
                 continue
             except Exception as e:
