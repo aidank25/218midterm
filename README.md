@@ -28,4 +28,6 @@ any extra arguments will be ignored
 
 # Program Design
 ## Design Patterns
-**The strategy design pattern** is implemented with the Calculation and Operation classes. The Calculation class is the context, which stores a reference to the strategy in the operation field. Each operation(addition, subtraction, multiplication, etc.) is a strategy. the Calculation class sets the strategy with a dictionary and then exectutes the operation using the same function for all operations, `execute(a,b)`. This use of the strategy pattern does away with the need for conditional statements to select an algorithm which speeds up the execution.
+**The strategy design pattern** is implemented with the Calculation and Operation classes. The Calculation class is the context, which stores a reference to the strategy in the operation field. Each operation(addition, subtraction, multiplication, etc.) is a strategy. The Calculation class sets the strategy with a dictionary and then exectutes the operation using the same function for all operations, `execute(a,b)`. This use of the strategy pattern does away with the need for conditional statements to select an algorithm which speeds up the execution.<br>
+
+
