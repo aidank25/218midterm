@@ -21,6 +21,14 @@ def test_max_entries():
     
     assert len(hist.calculations) == hist.max_entries
 
+def test_clear():
+    hist = History()
+    calc = calc = Calculation(2,5,"add")
+    hist.add_calculation(calc)
+    hist.add_calculation(calc)
+    hist.clear()
+    assert not hist.calculations
+
 def test_to_list():
     """convert to calculation objects to lists"""
     #build list of calculations

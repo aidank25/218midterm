@@ -26,6 +26,11 @@ class History():
         if(len(self.calculations) > self.max_entries):
             self.calculations.pop()
     
+    def clear(self):
+        "clear calculation history"
+        self.calculations = []
+        logging.info("cleared calculation history")
+
     def to_list(self):
         """converts list of calculation objects to list of lists"""
         listList = []

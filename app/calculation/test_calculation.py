@@ -35,7 +35,7 @@ def test_value_error():
 
 def test_type_error():
     with pytest.raises(TypeError):
-        Calculation(6, 'a', "divide")
+        Calculation(6, 'x', "divide")
 
 def test_str():
     c = Calculation(3, 2, "multiply")
