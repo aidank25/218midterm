@@ -17,6 +17,7 @@ any extra arguments will be ignored
 `clear`: clears the history<br>
 `save`: stores the history in a csv file<br>
 `load`: loads history from a csv file<br>
+`exit`: saves history and exits program<br>
 
 ## Settings/Environment Variables
 `HIST_PATH`: directory that history.csv will be saved<br>
