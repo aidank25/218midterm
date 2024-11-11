@@ -1,3 +1,6 @@
+# Calculator
+## Setup
+`python3 main.py`: start the calculator<br>
 ## Commands:
 #### Operation Commands
 Syntax: `operation a b`<br>
