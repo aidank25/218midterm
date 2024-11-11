@@ -18,6 +18,6 @@ any extra arguments will be ignored
 `save`: stores the history in a csv file<br>
 `load`: loads history from a csv file<br>
 
-## Settings
-environment variables:
-- 
+## Settings/Environment Variables
+`HIST_PATH`: directory that history.csv will be saved<br>
+`HIST_MAX`: max number of calculations stored in history<br>
