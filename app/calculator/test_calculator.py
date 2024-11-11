@@ -24,4 +24,3 @@ def test_exit(monkeypatch,capsys):
     with pytest.raises(SystemExit) as e:
         calculator_repl()
     assert e.value.code == 0
-    
