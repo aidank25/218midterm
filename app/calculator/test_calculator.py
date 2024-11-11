@@ -16,7 +16,7 @@ def test_help(monkeypatch,capsys):
     monkeypatch.setattr(sys, "stdin", StringIO("help\n"))
     calculator_repl()
     captured = capsys.readouterr()
-    help_str = "help\nhistory\nclear\nundo\nredo\nsave\nload\nadd\nsubtract\nmultiply\ndivide"
+    help_str = "help\nhistory\nclear\nsave\nload\nadd\nsubtract\nmultiply\ndivide"
     assert help_str in captured.out
 
 def test_exit(monkeypatch,capsys):
