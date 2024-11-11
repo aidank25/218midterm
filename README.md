@@ -17,3 +17,7 @@ any extra arguments will be ignored
 `clear`: clears the history<br>
 `save`: stores the history in a csv file<br>
 `load`: loads history from a csv file<br>
+
+## Settings
+environment variables:
+- 
