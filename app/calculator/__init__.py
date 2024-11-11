@@ -69,16 +69,12 @@ def calculator_repl():
         }
         
         while True:
+            print("Type in a command: ", end="")
             # get input
-            raw_input = []
-            raw_input = input().lower().strip().split()
-            command = raw_input[0]
+            split_input = []
+            split_input = input().lower().strip().split()
+            command = split_input[0]
             logging.info(f"user typed in command {command}")
-            try:
-                a = raw_input[1]
-                b = raw_input[2]
-            except IndexError:
-                logging.info("less than 3 arguments")
             
             # non calculation commands
             if command == "exit":
@@ -92,11 +88,19 @@ def calculator_repl():
                 pass
             # calculation commands
             try:
-                print(Calculation(command,a,b).result)
-                print("calculation")
+                a = split_input[1]
+                b = split_input[2]
+            except IndexError:
+                print("Operation Failed: missing operand(s)")
+                logging.info("Operation Failed: missing operand(s)")
                 continue
-            except:
-                pass
+            try:
+                
+
+                print(calculator.perform_operation(command, a, b))
+                continue
+            except Exception as e:
+                logging.error(f"failed to execute calculation {e}")
     except Exception as e:
         print(f"Fatal error:{e} \nQuitting.")
         logging.error(f"Fatal error:{e} in REPL")
