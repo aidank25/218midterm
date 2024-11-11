@@ -24,3 +24,9 @@ def test_exit(monkeypatch,capsys):
     with pytest.raises(SystemExit) as e:
         calculator_repl()
     assert e.value.code == 0
+
+def test_calc_commands(monkeypatch,capsys):
+    monkeypatch.setattr(sys, "stdin", StringIO("add 4 2\n"))
+    calculator_repl()
+    captured = capsys.readouterr()
+    assert "result: 6" in captured.out

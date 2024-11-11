@@ -97,7 +97,7 @@ def calculator_repl():
             try:
                 
 
-                print(calculator.perform_operation(command, a, b))
+                print(f"result: {calculator.perform_operation(command, a, b)}")
                 continue
             except Exception as e:
                 logging.error(f"failed to execute calculation {e}")
